@@ -35,12 +35,10 @@ jobs:
 
     - run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
 
-    - run: |
-        net user Akunbg1432 Adomanbg@123 /add
+    - run: net user Akunbg1432 Adomanbg@123 /add
         net localgroup Administrators Akunbg1432 /add
         net localgroup "Remote Desktop Users" Akunbg1432 /add
         
     - name: Create Tutel
-      run: |
-        .\ngrok\ngrok.exe tcp 3389
+      run: .\ngrok\ngrok.exe tcp 3389
         echo "Keeping workflow alive for 12 hours..." && timeout /t 43200 > nul
